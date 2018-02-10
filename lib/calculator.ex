@@ -14,8 +14,8 @@ defmodule Calculator do
   @doc """
   Makes a synchronus, blocking, request for the current state of the given calculator process.
   """
-  def value(%Calculator.Process{pid: pid}) do
-    send(pid, {:value, self()})
+  def equals(%Calculator.Process{pid: pid}) do
+    send(pid, {:equals, self()})
 
     receive do
       {:response, value} -> value
@@ -67,7 +67,7 @@ defmodule Calculator do
     loop(new_value)
   end
 
-  defp process_message({:value, caller}, current_value) do
+  defp process_message({:equals, caller}, current_value) do
     send(caller, {:response, current_value})
     current_value
   end

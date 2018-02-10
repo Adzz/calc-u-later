@@ -3,14 +3,14 @@ defmodule CalculatorTest do
   doctest Calculator
 
   test "initializes with 0 value" do
-    assert Calculator.start() |> Calculator.value() == 0
+    assert Calculator.start() |> Calculator.equals() == 0
   end
 
   test "add/2 adds the initial value to the given value" do
     result =
       Calculator.start()
       |> Calculator.add(10)
-      |> Calculator.value()
+      |> Calculator.equals()
 
     assert result == 10
   end
@@ -19,7 +19,7 @@ defmodule CalculatorTest do
     result =
       Calculator.start(10)
       |> Calculator.subtract(5)
-      |> Calculator.value()
+      |> Calculator.equals()
 
     assert result == 5
   end
@@ -28,7 +28,7 @@ defmodule CalculatorTest do
     result =
       Calculator.start(10)
       |> Calculator.divide(2)
-      |> Calculator.value()
+      |> Calculator.equals()
 
     assert result == 5.0
   end
@@ -37,7 +37,7 @@ defmodule CalculatorTest do
     result =
       Calculator.start(10)
       |> Calculator.multiply(2)
-      |> Calculator.value()
+      |> Calculator.equals()
 
     assert result == 20
   end
@@ -47,7 +47,7 @@ defmodule CalculatorTest do
       Calculator.start(10)
       |> Calculator.subtract(5)
       |> Calculator.add(400)
-      |> Calculator.value()
+      |> Calculator.equals()
 
     assert result == 405
   end
