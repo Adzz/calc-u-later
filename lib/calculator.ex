@@ -43,21 +43,22 @@ defmodule Calculator do
   defp loop(current_value) do
     new_value =
       receive do
-        {:value, caller} ->
-          send(caller, {:response, current_value})
-          current_value
-
-        {:add, value} ->
-          current_value + value
-
-        {:subtract, value} ->
-          current_value - value
-
-        _invalid_request ->
-          IO.puts("I'm sorry Dave I'm afraid I cant do that...")
-          current_value
+        message -> process_message(message, current_value)
       end
 
     loop(new_value)
+  end
+
+  defp process_message({:value, caller}, current_value) do
+    send(caller, {:response, current_value})
+    current_value
+  end
+
+  defp process_message({:add, value}, current_value), do: current_value + value
+  defp process_message({:subtract, value}, current_value), do: current_value - value
+
+  defp process_message(_, current_value) do
+    IO.puts("I'm sorry Dave I'm afraid I cant do that...")
+    current_value
   end
 end
