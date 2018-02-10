@@ -1,21 +1,28 @@
 # Calculator
 
-**TODO: Add description**
+This is a simple calculator written in elixir, leveraging erlang processess to asynchronusly run
+operations.
+
+Use it like this:
+
+```elixir
+Calculator.start |> Calculator.add(10) |> Calculator.equals
+#=> 10
+
+Calculator.start(10) |> Calculator.add(10) |> Calculator.equals
+#=> 20
+
+Calculator.start
+|> Calculator.add(10)
+|> Calculator.subtract(5)
+|> Calculator.multiply(10)
+|> Calculator.divide(2)
+|> Calculator.equals
+
+#=> 25.0
+```
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `calculator` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:calculator, "~> 0.1.0"}
-  ]
-end
-```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/calculator](https://hexdocs.pm/calculator).
-
+Documentation can be generated with `$ mix docs`
+And tests can be run with `mix test`

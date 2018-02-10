@@ -15,5 +15,5 @@ defmodule Calculator.Mixfile do
     [extra_applications: [:logger]]
   end
 
-  defp deps, do: []
+  defp deps, do: [{:ex_doc, "~> 0.16", only: :dev, runtime: false}]
 end
