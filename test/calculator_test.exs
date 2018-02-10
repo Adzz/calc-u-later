@@ -24,6 +24,15 @@ defmodule CalculatorTest do
     assert result == 5
   end
 
+  test "divide/2 adds the initial value to the given value" do
+    result =
+      Calculator.start(10)
+      |> Calculator.divide(2)
+      |> Calculator.value()
+
+    assert result == 5.0
+  end
+
   test "piping operations works as expected" do
     result =
       Calculator.start(10)
