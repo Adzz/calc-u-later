@@ -18,7 +18,7 @@ defmodule Calculator do
     send(pid, {:equals, self()})
 
     receive do
-      {:response, value} -> value
+      {:res, value} -> value
     end
   end
 
@@ -67,11 +67,7 @@ defmodule Calculator do
     loop(new_value)
   end
 
-  defp process_message({:equals, caller}, current_value) do
-    send(caller, {:response, current_value})
-    current_value
-  end
-
+  defp process_message({:equals, caller}, current_value), do: send(caller, {:res, current_value})
   defp process_message({:add, value}, current_value), do: current_value + value
   defp process_message({:subtract, value}, current_value), do: current_value - value
   defp process_message({:divide, value}, current_value), do: current_value / value
