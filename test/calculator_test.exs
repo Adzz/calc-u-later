@@ -33,6 +33,15 @@ defmodule CalculatorTest do
     assert result == 5.0
   end
 
+  test "multiply/2 adds the initial value to the given value" do
+    result =
+      Calculator.start(10)
+      |> Calculator.multiply(2)
+      |> Calculator.value()
+
+    assert result == 20
+  end
+
   test "piping operations works as expected" do
     result =
       Calculator.start(10)

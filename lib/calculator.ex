@@ -49,6 +49,15 @@ defmodule Calculator do
     process
   end
 
+  @doc """
+  Sends a message to the process kicked off by `start/1 to multiply a given number to the value contained
+  within it. Returns the process so it can be piped into another calculator operation.
+  """
+  def multiply(process = %Calculator.Process{pid: pid}, value) do
+    send(pid, {:multiply, value})
+    process
+  end
+
   defp loop(current_value) do
     new_value =
       receive do
@@ -66,6 +75,7 @@ defmodule Calculator do
   defp process_message({:add, value}, current_value), do: current_value + value
   defp process_message({:subtract, value}, current_value), do: current_value - value
   defp process_message({:divide, value}, current_value), do: current_value / value
+  defp process_message({:multiply, value}, current_value), do: current_value * value
 
   defp process_message(_, current_value) do
     IO.puts("I'm sorry Dave I'm afraid I cant do that...")
